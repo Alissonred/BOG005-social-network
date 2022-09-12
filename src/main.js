@@ -1,57 +1,24 @@
-// Este es el punto de entrada de tu aplicacion
-
-// import { myFunction } from './lib/index.js';
-// myFunction();
-
-const beginningnContent = '<h1> beginnig opened </h1>';
-const homeContent = '<h1> Home page </h1>';
-const wallContent = '<h1> wall opened </h1>';
-const profileContent = '<h1> profile opened </h1>';
-
-const linkContent = {
-  '#beginning': beginningnContent,
-  '#home': homeContent,
-  '#wall': wallContent,
-  '#profile': profileContent,
+import { welcome } from './components/welcome.js';
+import { login } from './components/login.js';
+import { register} from './components/register.js';
+const root = document.getElementById('root'); // me traigo el contenedor ppal
+const routes = {
+  '/': welcome,
+  '/login': login,
+  '/register': register,
+  
 };
 
-const root = document.getElementById('root');
-if (window.location.pathname === '/') {
-  root.innerHTML = beginningnContent;
-} else if (window.location.pathname === '/home') {
-  root.innerHTML = homeContent;
-} else if (window.location.pathname === '/wall') {
-  root.innerHTML = wallContent;
-} else if (window.location.pathname === '/profile') {
-  root.innerHTML = profileContent;
+export const onNavigate = (pathname) => {
+  window.history.pushState({},pathname,window.location.origin + pathname,);
+  root.removeChild(root.firstChild);// elimina lo que habpia
+  root.appendChild(routes[pathname]()); // inserta lo nuevo
+};
+
+const component = routes[window.location.pathname];
+window.onpopstate = ()=> {
+  root.removeChild(root.firstChild);// elimina lo que habpia
+  root.append(component());
 }
-
-const changeRoute = (hash) => {
-  if (hash === '#beginning') {
-    window.history.replaceState({}, 'beginning', '/');
-  } else if (hash === '#home') {
-    window.history.replaceState({}, 'home', '/home');
-  } else if (hash === '#wall') {
-    window.history.replaceState({}, 'wall', '/wall');
-  } else if (hash === '#profile') {
-    window.history.replaceState({}, 'profile', '/profile');
-  }
-};
-
-window.addEventListener('hashchange', () => {
-  const hash = window.location.hash;
-  root.innerHTML = linkContent[hash];
-  changeRoute(hash);
-});
-
-window.onpopstate = () => {
-  if (window.location.pathname === '/') {
-    root.innerHTML = beginningnContent;
-  } else if (window.location.pathname === '/home') {
-    root.innerHTML = homeContent;
-  } else if (window.location.pathname === '/wall') {
-    root.innerHTML = wallContent;
-  } else if (window.location.pathname === '/profile') {
-    root.innerHTML = profileContent;
-  }
-};
+root.appendChild(component());// invoc
+//root.appendChild(welcome());// escribo en contenedor ppal lo que tiene la funcion wlecome// renderiz
