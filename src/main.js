@@ -1,15 +1,15 @@
-import { Welcome } from './components/Welcome.js';
-import { Login } from './components/Login.js';
-import { Register } from './components/Register.js';
-import { Wall } from './components/Wall.js';
+import { welcome } from './components/Welcome.js';
+import { login } from './components/Login.js';
+import { register } from './components/Register.js';
+import { wall } from './components/Wall.js';
 
 const root = document.getElementById('root');
 
 const routes = {
-  '/': Welcome,//clave y valor
-  '/login': Login,
-  '/register': Register,
-  '/wall': Wall,
+  '/': welcome,//clave y valor
+  '/login': login,
+  '/register': register,
+  '/wall': wall,
 };
 
 //función para anexar un registro al historial del navegador (.pushState)
