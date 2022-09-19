@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test for the register function should render register correctly 1`] = `"<div id=\\"root\\"><section class=\\"viewRegister\\"><img srcset=\\"./image/ladyCodeLogo.jpg\\" class=\\"imgLogo\\"><form><button class=\\"btn\\">Inicia sesión con Google</button><input class=\\"input\\" type=\\"email\\" id=\\"emailRegister\\" placeholder=\\"Introduce tu correo\\" required=\\"\\"><input class=\\"input\\" id=\\"passRegister\\" placeholder=\\"Introduce tu contraseña\\" type=\\"password\\" required=\\"\\"><button class=\\"btn registration\\">Registrarse</button><button class=\\"btn\\" id=\\"ButtonRegresar\\">Regresar</button><p id=\\"errorText\\"></p></form></section></div>"`;

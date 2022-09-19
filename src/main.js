@@ -1,34 +1,38 @@
-import { welcome } from './components/welcome.js';
-import { login } from './components/login.js';
-import { register } from './components/register.js';
-import { wall } from './components/wall.js';
-
-const root = document.getElementById('root');
+import { welcome } from "./components/welcome.js";
+import { login } from "./components/login.js";
+import { register } from "./components/register.js";
+import { wall } from "./components/wall.js";
 
 const routes = {
-  '/': welcome,//clave y valor
-  '/login': login,
-  '/register': register,
-  '/wall': wall,
+  "/": welcome, // clave y valor
+  "/login": login,
+  "/register": register,
+  "/wall": wall,
 };
 
-//función para anexar un registro al historial del navegador (.pushState)
+// función para anexar un registro al historial del navegador (.pushState)
 export const onNavigate = (pathname) => {
+  const root = document.getElementById("root");
   window.history.pushState(
-    {},//estado vacio
-    pathname,//title
-    window.location.origin + pathname,// URL + (Ruta)
+    {}, // estado vacio
+    pathname, // title
+    window.location.origin + pathname // URL + (Ruta)
   );
   root.removeChild(root.firstChild);
   root.appendChild(routes[pathname]());
 };
-// Renderiza sólo ésta parte de la ruta
-const component = routes[window.location.pathname];
 
-//onpopstate, se dispara realizando una acción en el navegador como volver
+// onpopstate, se dispara realizando una acción en el navegador como volver
 window.onpopstate = () => {
-  root.removeChild(root.firstChild);//borrando el primer nodo
-  root.append(component());//insertando el nuevo nodo
+  const root = document.getElementById("root");
+  const component = routes[window.location.pathname];
+  root.removeChild(root.firstChild); // borrando el primer nodo
+  root.append(component()); // insertando el nuevo nodo
 };
 
-root.appendChild(component());
+window.addEventListener("load", () => {
+  // Renderiza sólo ésta parte de la ruta
+  const component = routes[window.location.pathname];
+  const root = document.getElementById("root");
+  root.appendChild(component());
+});
