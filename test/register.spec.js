@@ -5,7 +5,7 @@ jest.mock('../src/lib/index.js');//MOCK A TRAVES DEL EMBUDO
 /*   return {
 /*     auth: jest.fn(() => {  // función jest.fn crea una función para jest (es de Jest)
       return { auth: 'TEST' }
-    }), */
+    }), */  
 
     //createUser: (email, password) => { // estoy declarando  un metodo// jest.fn empodera la funcion al añadirle metodos
       /* if (!email || !password) {

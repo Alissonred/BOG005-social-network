@@ -7,10 +7,10 @@ export const wall = () => {
 
   const post = document.createElement('article');
   post.setAttribute('id', 'post');
-  const menu = document.createElement('nav');
+  const naveg= document.createElement('nav');
+  naveg.setAttribute('id', 'naveg');
+  const menu = document.createElement('ul');
   menu.setAttribute('id', 'menu');
-  const profile = document.createElement('li');
-  profile.setAttribute('id', 'menu');
 
   const writer = document.createElement('h3');
   writer.textContent = 'pepito';
