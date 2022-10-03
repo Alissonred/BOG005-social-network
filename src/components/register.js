@@ -49,6 +49,8 @@ export const register = () => {
     console.log(error)
   }); */
 
+  
+
   buttonBack.addEventListener("click", (e) => {
     // evento para regresar a inicio
     e.preventDefault();
